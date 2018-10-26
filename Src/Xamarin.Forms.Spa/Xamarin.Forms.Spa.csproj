@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>0.1.1</Version>
+    <Authors>Bill Chung</Authors>
+    <Company>Bill Chung</Company>
+    <Copyright>Bill Chung</Copyright>
+    <Description>Simple to use and single page framework for Xamarin Forms developers</Description>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageProjectUrl></PackageProjectUrl>
+    <RepositoryUrl>https://github.com/billchungiii/Xamarin.Forms.Spa/tree/master/Xamarin.Forms.Spa</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="3.3.0.912540" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ViewAbstractions\XSpaDialogPanel.xaml.cs">
+      <DependentUpon>XSpaDialogPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="ViewAbstractions\XSpaView.xaml.cs">
+      <DependentUpon>XSpaView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="ViewAbstractions\XSpaDialogPanel.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ViewAbstractions\XSpaMasterDetailView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ViewAbstractions\XSpaView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

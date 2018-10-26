@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TemplatedView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Xamarin.Forms.Spa.ViewAbstractions.XSpaDialogPanel">
+    <TemplatedView.ControlTemplate >
+        <ControlTemplate >
+            <Grid RowSpacing="0" ColumnSpacing="0" Padding="0">
+                <Grid BackgroundColor="{TemplateBinding PanelColor}" 
+                      Opacity="{TemplateBinding PanelOpacity}"
+                      RowSpacing="0" ColumnSpacing="0" Padding="0"/>
+                <ContentPresenter Content="{TemplateBinding Content}"/>
+            </Grid>
+        </ControlTemplate>
+    </TemplatedView.ControlTemplate>
+</TemplatedView>

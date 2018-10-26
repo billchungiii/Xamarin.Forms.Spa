@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xspa:XSpaDialogPanel xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xspa="clr-namespace:Xamarin.Forms.Spa.ViewAbstractions;assembly=Xamarin.Forms.Spa"
+             x:Class="NavigationSample.Views.Alert"
+             PanelOpacity="0.2">
+    <xspa:XSpaDialogPanel.Content>
+        <Frame Margin="32,72,32,72" BackgroundColor="White" HeightRequest="250" CornerRadius="10" VerticalOptions="Center" >
+            <StackLayout >
+                <Label x:Name="Title"  TextColor="Black" FontSize="17" FontAttributes="Bold"  Margin="8" />
+                <Label x:Name="Message" FontSize="15" Margin="10,8,10,8"/>
+                <Button Text="Close" Clicked="Button_Clicked" />
+            </StackLayout>
+        </Frame>
+  </xspa:XSpaDialogPanel.Content>
+</xspa:XSpaDialogPanel>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TemplatedView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Xamarin.Forms.Spa.ViewAbstractions.XSpaView">
+    <TemplatedView.ControlTemplate >
+        <ControlTemplate >
+            <Grid x:Name="outsideContainer"  ColumnSpacing="0" RowSpacing="0" Padding="0" BackgroundColor="Transparent" >
+                <Grid x:Name="insideContainer" BackgroundColor="Transparent" >
+                    <ContentPresenter  Content="{TemplateBinding FirstContent}" 
+                                       IsVisible="{TemplateBinding IsFirstVisible}" x:Name="firstPresenter" />
+                    <ContentPresenter  Content="{TemplateBinding SecondContent}" 
+                                       IsVisible="{TemplateBinding IsSecondVisible}" x:Name="secondPresenter"/>
+                </Grid>
+            </Grid>
+        </ControlTemplate>
+    </TemplatedView.ControlTemplate>
+</TemplatedView>

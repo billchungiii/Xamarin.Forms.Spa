@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NavigationSample.Views.View1">
+  <ContentView.Content>
+        <Grid BackgroundColor="White" >
+            <Grid.RowDefinitions >
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="1" Text="go next" Clicked="Button_Clicked" 
+                    WidthRequest="120" HeightRequest="48" 
+                    VerticalOptions="Center" HorizontalOptions="Center" Margin="16"/>
+            <Button Grid.Row="2" Text="Show Dialog" Clicked="ShowButton_Clicked" 
+                    WidthRequest="120" HeightRequest="48" 
+                    VerticalOptions="Center" HorizontalOptions="Center" Margin="16"/>
+        </Grid>
+    </ContentView.Content>
+</ContentView>
