@@ -2,16 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.1.1</Version>
+    <Version>0.1.1-preview</Version>
     <Authors>Bill Chung</Authors>
     <Company>Bill Chung</Company>
     <Copyright>Bill Chung</Copyright>
     <Description>Simple to use and single page framework for Xamarin Forms developers</Description>
-    <PackageLicenseUrl></PackageLicenseUrl>
-    <PackageProjectUrl></PackageProjectUrl>
-    <RepositoryUrl>https://github.com/billchungiii/Xamarin.Forms.Spa/tree/master/Xamarin.Forms.Spa</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/billchungiii/Xamarin.Forms.Spa/blob/master/LICENSE.txt</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/billchungiii/Xamarin.Forms.Spa/tree/master/Src/Xamarin.Forms.Spa</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/billchungiii/Xamarin.Forms.Spa/tree/master/Src/Xamarin.Forms.Spa</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes>preview</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
