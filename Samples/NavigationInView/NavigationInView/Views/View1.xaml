@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<spa:NavigableView  xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:spa="clr-namespace:Xamarin.Forms.Spa.ViewAbstractions;assembly=Xamarin.Forms.Spa"
+             x:Class="NavigationInView.Views.View1">
+    <spa:NavigableView.Content>
+        <Grid >
+            <Grid.RowDefinitions >
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Text="Xamarin Spa Navigation View 1" Margin="6"/>
+            <Button Grid.Row="1" Text="Next Page" Clicked="NextButton_Clicked"/>
+            <Button Grid.Row="2" Text="Back" Clicked="BackButton_Clicked"/>
+        </Grid>
+    </spa:NavigableView.Content>
+</spa:NavigableView>

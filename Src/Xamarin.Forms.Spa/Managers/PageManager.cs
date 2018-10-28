@@ -34,13 +34,27 @@ namespace Xamarin.Forms.Spa.Managers
         protected PageManager()
         { }
         public static void Initial(Application app, IXSpaContainer xspaContainer)
-        {           
+        {   
+            if (xspaContainer is null)
+            {
+                throw new ArgumentNullException("xspaContainer can not be null");
+            }
             PageManager.Manager = new PageManager
             {
                 XSpaContainer = xspaContainer,
                 States = new Stack<View>(),
                 StateManager = new ContentStateManager(xspaContainer),
             };
+        }
+
+        public static void Initial(Application app, IXSpaContainer xspaContainer, View mainView)
+        {
+            Initial(app, xspaContainer);
+            if (mainView == null)
+            {
+                throw new ArgumentNullException("mainView can not be null");
+            }
+            PageManager.Manager.DirectTo(mainView, null);           
         }
 
         public bool IsViewOnStackTop<T>()
@@ -79,9 +93,13 @@ namespace Xamarin.Forms.Spa.Managers
         }
         private void OnDirecting()
         {
-            if (Current is INavigable navigatedObject)
+            if (Current is INavigable navigatedView)
             {
-                navigatedObject.OnDirecting();
+                navigatedView.OnDirecting();
+            }
+            else if (Current.BindingContext is INavigable navigatedViewmodel )
+            {
+                navigatedViewmodel.OnDirecting();
             }
         }
         async public Task DirectToAsync(View view, object state, IXSpaTransition transition)
@@ -100,17 +118,25 @@ namespace Xamarin.Forms.Spa.Managers
 
         private void OnDirected(View view, object state)
         {
-            if (view is INavigable navigatedObject)
+            if (view is INavigable navigatedView)
             {
-                navigatedObject.OnDirected(state);
+                navigatedView.OnDirected(state);
+            }
+            else if (Current.BindingContext is INavigable navigatedViewmodel)
+            {
+                navigatedViewmodel.OnDirected(state);
             }
         }
 
         private void OnNavigating()
         {
-            if (Current is INavigable navigatedObject)
+            if (Current is INavigable navigatedView)
             {
-                navigatedObject.OnNavigating();
+                navigatedView.OnNavigating();
+            }
+            else if (Current.BindingContext is INavigable navigatedViewmodel)
+            {
+                navigatedViewmodel.OnNavigating();
             }
         }
 
@@ -133,17 +159,25 @@ namespace Xamarin.Forms.Spa.Managers
 
         private void OnNavigated(View view, object state)
         {
-            if (view is INavigable navigatedObject)
+            if (view is INavigable navigatedView)
             {
-                navigatedObject.OnNavigated(state);
+                navigatedView.OnNavigated(state);
+            }
+            else if (Current.BindingContext is INavigable navigatedViewmodel)
+            {
+                navigatedViewmodel.OnNavigated(state);
             }
         }
 
         private void OnBacking()
         {
-            if (Current is INavigable navigatedObject)
+            if (Current is INavigable navigatedView)
             {
-                navigatedObject.OnBacking();
+                navigatedView.OnBacking();
+            }
+            else if (Current.BindingContext is INavigable navigatedViewmodel)
+            {
+                navigatedViewmodel.OnBacking();
             }
         }
 
@@ -170,9 +204,13 @@ namespace Xamarin.Forms.Spa.Managers
 
         private void OnBacked(View view, object state)
         {
-            if (view is INavigable navigatedObject)
+            if (view is INavigable navigatedView)
             {
-                navigatedObject.OnBacked(state);
+                navigatedView.OnBacked(state);
+            }
+            else if (Current.BindingContext is INavigable navigatedViewmodel)
+            {
+                navigatedViewmodel.OnBacked(state);
             }
         }
 
