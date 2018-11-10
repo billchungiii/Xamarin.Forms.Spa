@@ -49,5 +49,13 @@ namespace NavigationInVM.ViewModels
                 Title = words;
             }
         }
+
+        public override void OnDirected(object state)
+        {
+            if (state is string words)
+            {
+                Title = words;
+            }
+        }
     }
 }

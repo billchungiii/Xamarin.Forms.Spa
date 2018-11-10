@@ -91,53 +91,79 @@ namespace Xamarin.Forms.Spa.Managers
                 States.Clear();
             }
         }
+
+        private INavigable CheckCurrent()
+        {
+            if (Current is INavigable)
+            {
+                return Current as INavigable;
+            }
+            else
+            {
+                return NullNavigable.Empty;
+            }
+        }
+
+        private INavigable CheckCurrentBindingContext()
+        {
+            if (Current != null && Current.BindingContext is INavigable)
+            {
+                return Current.BindingContext as INavigable;
+            }
+            else
+            {
+                return NullNavigable.Empty;
+            }
+        }
+
+        private static bool IsNullNavigatable(INavigable navigable)
+        {
+            return navigable.GetType() == typeof(NullNavigable);
+        }
+
+        private INavigable GetNavigable()
+        {
+            var result = CheckCurrent();
+            if (IsNullNavigatable(result))
+            {
+                result = CheckCurrentBindingContext();
+            }
+            return result;
+        }
+
+
         private void OnDirecting()
         {
-            if (Current is INavigable navigatedView)
-            {
-                navigatedView.OnDirecting();
-            }
-            else if (Current != null && Current.BindingContext is INavigable navigatedViewmodel)
-            {
-                navigatedViewmodel.OnDirecting();
-            }
+            GetNavigable().OnDirecting();
         }
         async public Task DirectToAsync(View view, object state, IXSpaTransition transition)
         {
             OnDirecting();
             await GoContentViewAsync(view, transition);
-            OnDirected(view, state);
+            OnDirected(state);
         }
 
         public void DirectTo(View view, object state)
         {
             OnDirecting();
             GoContentView(view);
-            OnDirected(view, state);
+            OnDirected(state);
         }
 
-        private void OnDirected(View view, object state)
+
+
+        private void OnDirected(object state)
         {
-            if (view is INavigable navigatedView)
-            {
-                navigatedView.OnDirected(state);
-            }
-            else if (Current != null &&  Current.BindingContext is INavigable navigatedViewmodel)
-            {
-                navigatedViewmodel.OnDirected(state);
-            }
+            GetNavigable().OnDirected(state);
         }
+
+
+
+
 
         private void OnNavigating()
         {
-            if (Current is INavigable navigatedView)
-            {
-                navigatedView.OnNavigating();
-            }
-            else if (Current != null && Current.BindingContext is INavigable navigatedViewmodel)
-            {
-                navigatedViewmodel.OnNavigating();
-            }
+            GetNavigable().OnNavigating();
         }
 
         async public Task NavigateToAsync(View view, object state, IXSpaTransition transition)
@@ -145,7 +171,7 @@ namespace Xamarin.Forms.Spa.Managers
             OnNavigating();
             Push();
             await GoContentViewAsync(view, transition);
-            OnNavigated(view, state);
+            OnNavigated(state);
         }
 
         public void NavigateTo(View view, object state)
@@ -153,32 +179,18 @@ namespace Xamarin.Forms.Spa.Managers
             OnNavigating();
             Push();
             GoContentView(view);
-            OnNavigated(view, state);
+            OnNavigated(state);
         }
 
 
-        private void OnNavigated(View view, object state)
+        private void OnNavigated(object state)
         {
-            if (view is INavigable navigatedView)
-            {
-                navigatedView.OnNavigated(state);
-            }
-            else if (Current != null && Current.BindingContext is INavigable navigatedViewmodel)
-            {
-                navigatedViewmodel.OnNavigated(state);
-            }
+            GetNavigable().OnNavigated(state);
         }
 
         private void OnBacking()
         {
-            if (Current is INavigable navigatedView)
-            {
-                navigatedView.OnBacking();
-            }
-            else if (Current != null && Current.BindingContext is INavigable navigatedViewmodel)
-            {
-                navigatedViewmodel.OnBacking();
-            }
+            GetNavigable().OnBacking();
         }
 
         async public Task NavigateBackAsync(object state, IXSpaTransition transition)
@@ -188,7 +200,7 @@ namespace Xamarin.Forms.Spa.Managers
             if (view != null)
             {
                 await GoContentViewAsync(view, transition);
-                OnBacked(view, state);
+                OnBacked(state);
             }
         }
         public void NavigateBack(object state)
@@ -198,20 +210,13 @@ namespace Xamarin.Forms.Spa.Managers
             if (view != null)
             {
                 GoContentView(view);
-                OnBacked(view, state);
+                OnBacked(state);
             }
         }
 
-        private void OnBacked(View view, object state)
+        private void OnBacked(object state)
         {
-            if (view is INavigable navigatedView)
-            {
-                navigatedView.OnBacked(state);
-            }
-            else if (Current != null && Current.BindingContext is INavigable navigatedViewmodel)
-            {
-                navigatedViewmodel.OnBacked(state);
-            }
+            GetNavigable().OnBacked(state);
         }
 
         private void GoContentView(View view)
@@ -239,6 +244,31 @@ namespace Xamarin.Forms.Spa.Managers
         public void ClearDialogs()
         {
             XSpaContainer.OutsideContainer.Children.Clear();
+        }
+
+
+        private class NullNavigable : INavigable
+        {
+
+            public static readonly NullNavigable Empty = new NullNavigable();
+
+            public void OnBacked(object state)
+            { }
+
+            public void OnBacking()
+            { }
+
+            public void OnDirected(object state)
+            { }
+
+            public void OnDirecting()
+            { }
+
+            public void OnNavigated(object state)
+            { }
+
+            public void OnNavigating()
+            { }
         }
     }
 }

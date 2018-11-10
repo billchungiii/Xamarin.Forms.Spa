@@ -15,7 +15,7 @@ namespace NavigationInVM
             InitializeComponent();
             var page = new XSpaPage();
             PageManager.Initial(this, (IXSpaContainer)page.Content);
-            PageManager.Manager.DirectTo(new MainView(), null);
+            PageManager.Manager.DirectTo(new MainView(), "From App");
             MainPage = page;
         }
 
