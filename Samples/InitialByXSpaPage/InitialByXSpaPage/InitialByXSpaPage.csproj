@@ -10,8 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="3.4.0.925479-pre1" />
-    <PackageReference Include="Xamarin.Forms.Spa" Version="0.1.1-preview" />
+    <PackageReference Include="Xamarin.Forms" Version="3.3.0.912540" />
+    <PackageReference Include="Xamarin.Forms.Spa" Version="0.1.2-preview" />
   </ItemGroup>
 
   <ItemGroup>

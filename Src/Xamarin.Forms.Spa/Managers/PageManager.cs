@@ -8,7 +8,7 @@ using Xamarin.Forms.Spa.ViewAbstractions;
 namespace Xamarin.Forms.Spa.Managers
 {
     public class PageManager
-    {        
+    {
         private static PageManager _manager;
         public static PageManager Manager
         {
@@ -34,7 +34,7 @@ namespace Xamarin.Forms.Spa.Managers
         protected PageManager()
         { }
         public static void Initial(Application app, IXSpaContainer xspaContainer)
-        {   
+        {
             if (xspaContainer is null)
             {
                 throw new ArgumentNullException("xspaContainer can not be null");
@@ -54,7 +54,7 @@ namespace Xamarin.Forms.Spa.Managers
             {
                 throw new ArgumentNullException("mainView can not be null");
             }
-            PageManager.Manager.DirectTo(mainView, null);           
+            PageManager.Manager.DirectTo(mainView, null);
         }
 
         public bool IsViewOnStackTop<T>()
@@ -97,7 +97,7 @@ namespace Xamarin.Forms.Spa.Managers
             {
                 navigatedView.OnDirecting();
             }
-            else if (Current.BindingContext is INavigable navigatedViewmodel )
+            else if (Current != null && Current.BindingContext is INavigable navigatedViewmodel)
             {
                 navigatedViewmodel.OnDirecting();
             }
@@ -122,7 +122,7 @@ namespace Xamarin.Forms.Spa.Managers
             {
                 navigatedView.OnDirected(state);
             }
-            else if (Current.BindingContext is INavigable navigatedViewmodel)
+            else if (Current != null &&  Current.BindingContext is INavigable navigatedViewmodel)
             {
                 navigatedViewmodel.OnDirected(state);
             }
@@ -134,7 +134,7 @@ namespace Xamarin.Forms.Spa.Managers
             {
                 navigatedView.OnNavigating();
             }
-            else if (Current.BindingContext is INavigable navigatedViewmodel)
+            else if (Current != null && Current.BindingContext is INavigable navigatedViewmodel)
             {
                 navigatedViewmodel.OnNavigating();
             }
@@ -145,7 +145,7 @@ namespace Xamarin.Forms.Spa.Managers
             OnNavigating();
             Push();
             await GoContentViewAsync(view, transition);
-            OnNavigated(view,state);
+            OnNavigated(view, state);
         }
 
         public void NavigateTo(View view, object state)
@@ -153,7 +153,7 @@ namespace Xamarin.Forms.Spa.Managers
             OnNavigating();
             Push();
             GoContentView(view);
-            OnNavigated(view,state);
+            OnNavigated(view, state);
         }
 
 
@@ -163,7 +163,7 @@ namespace Xamarin.Forms.Spa.Managers
             {
                 navigatedView.OnNavigated(state);
             }
-            else if (Current.BindingContext is INavigable navigatedViewmodel)
+            else if (Current != null && Current.BindingContext is INavigable navigatedViewmodel)
             {
                 navigatedViewmodel.OnNavigated(state);
             }
@@ -175,7 +175,7 @@ namespace Xamarin.Forms.Spa.Managers
             {
                 navigatedView.OnBacking();
             }
-            else if (Current.BindingContext is INavigable navigatedViewmodel)
+            else if (Current != null && Current.BindingContext is INavigable navigatedViewmodel)
             {
                 navigatedViewmodel.OnBacking();
             }
@@ -208,7 +208,7 @@ namespace Xamarin.Forms.Spa.Managers
             {
                 navigatedView.OnBacked(state);
             }
-            else if (Current.BindingContext is INavigable navigatedViewmodel)
+            else if (Current != null && Current.BindingContext is INavigable navigatedViewmodel)
             {
                 navigatedViewmodel.OnBacked(state);
             }

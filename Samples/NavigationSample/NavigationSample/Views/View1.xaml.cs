@@ -20,7 +20,7 @@ namespace NavigationSample.Views
 		}
 
         async private void Button_Clicked(object sender, EventArgs e)
-        
+        {         
             var next = new View2();          
             IXSpaTransition transition = new FadeAndMoveDown();
             await PageManager.Manager.NavigateToAsync(next, null, transition);

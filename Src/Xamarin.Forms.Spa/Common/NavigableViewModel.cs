@@ -5,7 +5,7 @@ using Xamarin.Forms.Spa.ViewAbstractions;
 
 namespace Xamarin.Forms.Spa.Common
 {
-    public abstract class NavigableViewModel : INavigable
+    public abstract class NavigableViewModel : NotifyPropertyBase, INavigable
     {
         public virtual void OnBacked(object state)
         { }

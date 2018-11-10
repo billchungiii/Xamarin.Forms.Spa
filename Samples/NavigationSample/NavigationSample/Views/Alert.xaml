@@ -12,5 +12,5 @@
                 <Button Text="Close" Clicked="Button_Clicked" />
             </StackLayout>
         </Frame>
-  </xspa:XSpaDialogPanel.Content>
+    </xspa:XSpaDialogPanel.Content>
 </xspa:XSpaDialogPanel>

@@ -12,7 +12,7 @@ namespace Xamarin.Forms.Spa.Common
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        protected virtual void SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
+        public virtual void SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
         {
             if (!object.Equals(storage, value))
             {
@@ -22,5 +22,5 @@ namespace Xamarin.Forms.Spa.Common
         }
     }
 
-    
+
 }
